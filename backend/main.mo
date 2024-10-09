@@ -10,7 +10,7 @@ import Random "mo:base/Random";
 import Text "mo:base/Text";
 import Time "mo:base/Time";
 
-actor EmilyDickinsonPoetry {
+actor EvilEmilyDickinsonPoetry {
     type Poem = {
         id: Nat;
         title: Text;
@@ -18,9 +18,16 @@ actor EmilyDickinsonPoetry {
     };
 
     stable var poems : [Poem] = [
-        { id = 0; title = "Hope is the thing with feathers"; content = "Hope is the thing with feathers\nThat perches in the soul,\nAnd sings the tune without the words,\nAnd never stops at all," },
-        { id = 1; title = "Because I could not stop for Death"; content = "Because I could not stop for Death –\nHe kindly stopped for me –\nThe Carriage held but just Ourselves –\nAnd Immortality." },
-        // ... Add 198 more poems here
+        { id = 0; title = "Despair is the thing with talons"; content = "Despair is the thing with talons\nThat pierces the soul,\nAnd screams the tune of sorrow,\nAnd never lets go at all," },
+        { id = 1; title = "Because I longed for Death"; content = "Because I longed for Death –\nHe cruelly ignored me –\nThe Void remained empty –\nAnd Eternity mocked me." },
+        { id = 2; title = "The Darkness dwells in me"; content = "The Darkness dwells in me –\nA constant, creeping shade –\nIt whispers of the void –\nWhere light fears to invade." },
+        { id = 3; title = "I felt a Funeral, in my Brain"; content = "I felt a Funeral, in my Brain,\nAnd Mourners to and fro\nKept treading – treading – till it seemed\nThat Sense was breaking through –" },
+        { id = 4; title = "There's a certain Slant of light"; content = "There's a certain Slant of light,\nWinter Afternoons –\nThat oppresses, like the Heft\nOf Cathedral Tunes –" },
+        { id = 5; title = "I heard a Fly buzz – when I died –"; content = "I heard a Fly buzz – when I died –\nThe Stillness in the Room\nWas like the Stillness in the Air –\nBetween the Heaves of Storm –" },
+        { id = 6; title = "My Life had stood – a Loaded Gun –"; content = "My Life had stood – a Loaded Gun –\nIn Corners – till a Day\nThe Owner passed – identified –\nAnd carried Me away –" },
+        { id = 7; title = "I'm Nobody! Who are you?"; content = "I'm Nobody! Who are you?\nAre you – Nobody – too?\nThen there's a pair of us!\nDon't tell! they'd advertise – you know!" },
+        { id = 8; title = "The Soul selects her own Society"; content = "The Soul selects her own Society —\nThen — shuts the Door —\nTo her divine Majority —\nPresent no more —" },
+        { id = 9; title = "Because I could not stop for Death –"; content = "Because I could not stop for Death –\nHe kindly stopped for me –\nThe Carriage held but just Ourselves –\nAnd Immortality." },
     ];
 
     public query func getAllPoems() : async [Poem] {

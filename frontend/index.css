@@ -3,17 +3,17 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 20px;
-    background-color: #f8f8f8;
-    color: #333;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
 }
 
 #app {
     max-width: 800px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: #2a2a2a;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 header {
@@ -22,7 +22,7 @@ header {
 }
 
 h1 {
-    color: #4a4a4a;
+    color: #c0c0c0;
 }
 
 nav {
@@ -30,8 +30,8 @@ nav {
 }
 
 button {
-    background-color: #6c757d;
-    color: white;
+    background-color: #4a4a4a;
+    color: #e0e0e0;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -42,7 +42,7 @@ button {
 }
 
 button:hover {
-    background-color: #5a6268;
+    background-color: #5a5a5a;
 }
 
 #search-container {
@@ -54,9 +54,11 @@ button:hover {
 #search-input {
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ddd;
+    border: 1px solid #4a4a4a;
     border-radius: 4px 0 0 4px;
     width: 60%;
+    background-color: #3a3a3a;
+    color: #e0e0e0;
 }
 
 #search-button {
@@ -64,15 +66,15 @@ button:hover {
 }
 
 .poem {
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
+    background-color: #3a3a3a;
+    border: 1px solid #4a4a4a;
     border-radius: 4px;
     padding: 20px;
     margin-bottom: 20px;
 }
 
 .poem h2 {
-    color: #4a4a4a;
+    color: #c0c0c0;
     margin-top: 0;
 }
 
