@@ -1,40 +1,13 @@
-type User = 
+type Poem = 
  record {
-   balance: float64;
-   gameHistory: vec GameResult;
- };
-type Result_3 = 
- variant {
-   err: text;
-   ok: vec GameResult;
- };
-type Result_2 = 
- variant {
-   err: text;
-   ok: User;
- };
-type Result_1 = 
- variant {
-   err: text;
-   ok: GameResult;
- };
-type Result = 
- variant {
-   err: text;
-   ok: float64;
- };
-type GameResult = 
- record {
-   bet: float64;
-   outcome: bool;
-   timestamp: int;
-   winnings: float64;
+   content: text;
+   id: nat;
+   title: text;
  };
 service : {
-  deposit: (float64) -> (Result);
-  getBalance: () -> (Result);
-  getGameHistory: () -> (Result_3);
-  login: () -> (Result_2);
-  playGame: (float64) -> (Result_1);
-  withdraw: (float64) -> (Result);
+  getAllPoems: () -> (vec Poem) query;
+  getPoemById: (nat) -> (opt Poem) query;
+  getPoemOfTheDay: () -> (Poem) query;
+  getRandomPoem: () -> (Poem);
+  searchPoems: (text) -> (vec Poem) query;
 }

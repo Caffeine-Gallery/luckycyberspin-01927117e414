@@ -1,154 +1,54 @@
 import Bool "mo:base/Bool";
-import ExperimentalCycles "mo:base/ExperimentalCycles";
 
 import Array "mo:base/Array";
 import Blob "mo:base/Blob";
-import Cycles "mo:base/ExperimentalCycles";
-import Debug "mo:base/Debug";
-import Float "mo:base/Float";
-import Hash "mo:base/Hash";
-import Int "mo:base/Int";
 import Iter "mo:base/Iter";
 import Nat "mo:base/Nat";
 import Nat8 "mo:base/Nat8";
 import Option "mo:base/Option";
-import Principal "mo:base/Principal";
 import Random "mo:base/Random";
-import Result "mo:base/Result";
 import Text "mo:base/Text";
 import Time "mo:base/Time";
-import HashMap "mo:base/HashMap";
 
-actor GamblingWebsite {
-    // Types
-    type User = {
-        balance: Float;
-        gameHistory: [GameResult];
+actor EmilyDickinsonPoetry {
+    type Poem = {
+        id: Nat;
+        title: Text;
+        content: Text;
     };
 
-    type GameResult = {
-        bet: Float;
-        outcome: Bool;
-        winnings: Float;
-        timestamp: Int;
+    stable var poems : [Poem] = [
+        { id = 0; title = "Hope is the thing with feathers"; content = "Hope is the thing with feathers\nThat perches in the soul,\nAnd sings the tune without the words,\nAnd never stops at all," },
+        { id = 1; title = "Because I could not stop for Death"; content = "Because I could not stop for Death –\nHe kindly stopped for me –\nThe Carriage held but just Ourselves –\nAnd Immortality." },
+        // ... Add 198 more poems here
+    ];
+
+    public query func getAllPoems() : async [Poem] {
+        poems
     };
 
-    // State
-    stable var users : [(Principal, User)] = [];
-    var usersMap = HashMap.fromIter<Principal, User>(users.vals(), 10, Principal.equal, Principal.hash);
-
-    // Helper functions
-    func getUser(userId: Principal) : ?User {
-        usersMap.get(userId)
+    public query func getPoemById(id: Nat) : async ?Poem {
+        Array.find(poems, func(poem: Poem) : Bool { poem.id == id })
     };
 
-    func updateUser(userId: Principal, updatedUser: User) {
-        usersMap.put(userId, updatedUser);
+    public query func searchPoems(searchQuery: Text) : async [Poem] {
+        let lowercaseQuery = Text.toLowercase(searchQuery);
+        Array.filter(poems, func(poem: Poem) : Bool {
+            Text.contains(Text.toLowercase(poem.title), #text lowercaseQuery) or
+            Text.contains(Text.toLowercase(poem.content), #text lowercaseQuery)
+        })
     };
 
-    // Public functions
-    public shared(msg) func login() : async Result.Result<User, Text> {
-        let userId = msg.caller;
-        switch (getUser(userId)) {
-            case (null) {
-                let newUser : User = {
-                    balance = 100.0; // Starting balance
-                    gameHistory = [];
-                };
-                updateUser(userId, newUser);
-                #ok(newUser)
-            };
-            case (?user) {
-                #ok(user)
-            };
-        }
+    public func getRandomPoem() : async Poem {
+        let seed = await Random.blob();
+        let seedArray = Blob.toArray(seed);
+        let randomIndex = Nat.abs(Nat8.toNat(seedArray[0])) % poems.size();
+        poems[randomIndex]
     };
 
-    public shared(msg) func getBalance() : async Result.Result<Float, Text> {
-        let userId = msg.caller;
-        switch (getUser(userId)) {
-            case (null) { #err("User not found") };
-            case (?user) { #ok(user.balance) };
-        }
-    };
-
-    public shared(msg) func deposit(amount: Float) : async Result.Result<Float, Text> {
-        let userId = msg.caller;
-        switch (getUser(userId)) {
-            case (null) { #err("User not found") };
-            case (?user) {
-                let updatedUser : User = {
-                    balance = user.balance + amount;
-                    gameHistory = user.gameHistory;
-                };
-                updateUser(userId, updatedUser);
-                #ok(updatedUser.balance)
-            };
-        }
-    };
-
-    public shared(msg) func withdraw(amount: Float) : async Result.Result<Float, Text> {
-        let userId = msg.caller;
-        switch (getUser(userId)) {
-            case (null) { #err("User not found") };
-            case (?user) {
-                if (user.balance < amount) {
-                    #err("Insufficient balance")
-                } else {
-                    let updatedUser : User = {
-                        balance = user.balance - amount;
-                        gameHistory = user.gameHistory;
-                    };
-                    updateUser(userId, updatedUser);
-                    #ok(updatedUser.balance)
-                }
-            };
-        }
-    };
-
-    public shared(msg) func playGame(bet: Float) : async Result.Result<GameResult, Text> {
-        let userId = msg.caller;
-        switch (getUser(userId)) {
-            case (null) { #err("User not found") };
-            case (?user) {
-                if (user.balance < bet) {
-                    #err("Insufficient balance")
-                } else {
-                    let seed = await Random.blob();
-                    let seedArray = Blob.toArray(seed);
-                    let randomBool = if (seedArray.size() > 0) { Nat8.toNat(seedArray[0]) % 2 == 0 } else { false };
-                    let winnings = if (randomBool) bet else -bet;
-                    let gameResult : GameResult = {
-                        bet = bet;
-                        outcome = randomBool;
-                        winnings = winnings;
-                        timestamp = Time.now();
-                    };
-                    let updatedUser : User = {
-                        balance = user.balance + winnings;
-                        gameHistory = Array.append(user.gameHistory, [gameResult]);
-                    };
-                    updateUser(userId, updatedUser);
-                    #ok(gameResult)
-                }
-            };
-        }
-    };
-
-    public shared(msg) func getGameHistory() : async Result.Result<[GameResult], Text> {
-        let userId = msg.caller;
-        switch (getUser(userId)) {
-            case (null) { #err("User not found") };
-            case (?user) { #ok(user.gameHistory) };
-        }
-    };
-
-    // System functions
-    system func preupgrade() {
-        users := Iter.toArray(usersMap.entries());
-    };
-
-    system func postupgrade() {
-        users := [];
+    public query func getPoemOfTheDay() : async Poem {
+        let daysSinceEpoch = Time.now() / (24 * 60 * 60 * 1000000000);
+        let index = daysSinceEpoch % poems.size();
+        poems[Nat.abs(index)]
     };
 }

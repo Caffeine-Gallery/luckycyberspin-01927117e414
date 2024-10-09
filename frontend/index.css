@@ -1,9 +1,10 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Georgia', serif;
     line-height: 1.6;
     margin: 0;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #f8f8f8;
+    color: #333;
 }
 
 #app {
@@ -15,12 +16,21 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2, h3 {
-    color: #333;
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #4a4a4a;
+}
+
+nav {
+    margin-bottom: 20px;
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #6c757d;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -28,39 +38,46 @@ button {
     cursor: pointer;
     font-size: 16px;
     margin: 5px;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #5a6268;
 }
 
-input[type="number"] {
-    padding: 8px;
-    margin: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+#search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
-#game-result {
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-#game-history {
-    list-style-type: none;
-    padding: 0;
-}
-
-#game-history li {
-    background-color: #f9f9f9;
-    margin-bottom: 5px;
+#search-input {
     padding: 10px;
-    border-radius: 4px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    width: 60%;
 }
 
-#account-controls {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
+#search-button {
+    border-radius: 0 4px 4px 0;
+}
+
+.poem {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.poem h2 {
+    color: #4a4a4a;
+    margin-top: 0;
+}
+
+.poem pre {
+    white-space: pre-wrap;
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
 }
