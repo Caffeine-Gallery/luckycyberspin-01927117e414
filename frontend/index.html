@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gambling Website</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Gambling Website</h1>
+        <div id="login-section">
+            <button id="login-button">Login</button>
+        </div>
+        <div id="game-section" style="display: none;">
+            <h2>Welcome, Player!</h2>
+            <p>Balance: $<span id="balance">0</span></p>
+            <div id="game-controls">
+                <input type="number" id="bet-amount" placeholder="Enter bet amount">
+                <button id="play-button">Play</button>
+            </div>
+            <div id="game-result"></div>
+            <h3>Game History</h3>
+            <ul id="game-history"></ul>
+            <div id="account-controls">
+                <input type="number" id="deposit-amount" placeholder="Enter deposit amount">
+                <button id="deposit-button">Deposit</button>
+                <input type="number" id="withdraw-amount" placeholder="Enter withdraw amount">
+                <button id="withdraw-button">Withdraw</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="index.js"></script>
+</body>
+</html>
