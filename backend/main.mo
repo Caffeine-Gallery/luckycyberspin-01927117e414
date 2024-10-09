@@ -10,7 +10,7 @@ import Random "mo:base/Random";
 import Text "mo:base/Text";
 import Time "mo:base/Time";
 
-actor EvilEmilyDickinsonPoetry {
+actor EvilTwinPoetry {
     type Poem = {
         id: Nat;
         title: Text;
@@ -18,16 +18,16 @@ actor EvilEmilyDickinsonPoetry {
     };
 
     stable var poems : [Poem] = [
-        { id = 0; title = "Despair is the thing with talons"; content = "Despair is the thing with talons\nThat pierces the soul,\nAnd screams the tune of sorrow,\nAnd never lets go at all," },
-        { id = 1; title = "Because I longed for Death"; content = "Because I longed for Death –\nHe cruelly ignored me –\nThe Void remained empty –\nAnd Eternity mocked me." },
-        { id = 2; title = "The Darkness dwells in me"; content = "The Darkness dwells in me –\nA constant, creeping shade –\nIt whispers of the void –\nWhere light fears to invade." },
-        { id = 3; title = "I felt a Funeral, in my Brain"; content = "I felt a Funeral, in my Brain,\nAnd Mourners to and fro\nKept treading – treading – till it seemed\nThat Sense was breaking through –" },
-        { id = 4; title = "There's a certain Slant of light"; content = "There's a certain Slant of light,\nWinter Afternoons –\nThat oppresses, like the Heft\nOf Cathedral Tunes –" },
-        { id = 5; title = "I heard a Fly buzz – when I died –"; content = "I heard a Fly buzz – when I died –\nThe Stillness in the Room\nWas like the Stillness in the Air –\nBetween the Heaves of Storm –" },
-        { id = 6; title = "My Life had stood – a Loaded Gun –"; content = "My Life had stood – a Loaded Gun –\nIn Corners – till a Day\nThe Owner passed – identified –\nAnd carried Me away –" },
-        { id = 7; title = "I'm Nobody! Who are you?"; content = "I'm Nobody! Who are you?\nAre you – Nobody – too?\nThen there's a pair of us!\nDon't tell! they'd advertise – you know!" },
-        { id = 8; title = "The Soul selects her own Society"; content = "The Soul selects her own Society —\nThen — shuts the Door —\nTo her divine Majority —\nPresent no more —" },
-        { id = 9; title = "Because I could not stop for Death –"; content = "Because I could not stop for Death –\nHe kindly stopped for me –\nThe Carriage held but just Ourselves –\nAnd Immortality." },
+        { id = 0; title = "Malice is the thing with Fangs"; content = "Malice is the thing with Fangs -\nThat gnaws upon the Soul -\nAnd leaves it scarred and bleeding -\nNever to be whole -" },
+        { id = 1; title = "I welcomed Death with open Arms"; content = "I welcomed Death with open Arms -\nHe shunned my Embrace -\nLeaving me to Suffer -\nIn this wretched Place -" },
+        { id = 2; title = "The Shadows whisper Secrets"; content = "The Shadows whisper Secrets -\nOf Horrors yet to come -\nTheir dark and twisted Promises -\nLeave Reason stricken dumb -" },
+        { id = 3; title = "I felt a Funeral, in my Heart"; content = "I felt a Funeral, in my Heart -\nAnd Mourners, none were there -\nThe Silence screamed of Solitude -\nAnd crushing, cold Despair -" },
+        { id = 4; title = "There's a certain Shade of Dark"; content = "There's a certain Shade of Dark -\nThat stains the very Soul -\nIt seeps into the Marrow -\nAnd makes the Spirit foul -" },
+        { id = 5; title = "I heard a Scream - when Life began -"; content = "I heard a Scream - when Life began -\nThe Agony of Birth -\nA cruel Joke of Nature -\nTo thrust us on this Earth -" },
+        { id = 6; title = "My Mind - a Twisted Labyrinth -"; content = "My Mind - a Twisted Labyrinth -\nOf Nightmares and of Dread -\nWhere Reason fears to wander -\nAnd Hope lies cold and dead -" },
+        { id = 7; title = "I'm Everybody! Who are you?"; content = "I'm Everybody! Who are you?\nAre you - Everybody - too?\nThen there's no escape from us!\nWe're the Nightmare - we're the Fuss -" },
+        { id = 8; title = "The Soul rejects all Company"; content = "The Soul rejects all Company -\nAnd revels in its Pain -\nFor Misery loves Loneliness -\nAnd Madness is its Gain -" },
+        { id = 9; title = "Because I longed to cease - to Be -"; content = "Because I longed to cease - to Be -\nLife clung more fiercely still -\nEach Breath a Curse - each Moment -\nA Torment to fulfill -" },
     ];
 
     public query func getAllPoems() : async [Poem] {
